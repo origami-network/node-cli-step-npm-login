@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - 6.9
+  - stable
+
+services:
+  - docker
+
+before_install:
+- docker pull verdaccio/verdaccio:2.7.4
+- docker run --name registry-npm -d -p 127.0.0.1:4873:4873  verdaccio/verdaccio:2.7.4
+
+install:
+  - npm install
+
+script:
+#  - npm run test:cover
+  - npm run spec -- --registry=http://127.0.0.1:4873
+  
+after_failure:
+  - docker logs registry-npm
+
+#after_script:
+#  - npm run test:cover:publish
