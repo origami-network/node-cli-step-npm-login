@@ -8,17 +8,17 @@ services:
 
 before_install:
 - docker pull verdaccio/verdaccio:2.7.4
-- docker run -d -p 127.0.0.1:4873:4873  verdaccio/verdaccio:2.7.4
-- docker ps -a
+- docker run --name registry-npm -d -p 127.0.0.1:4873:4873  verdaccio/verdaccio:2.7.4
 
-#install:
-#  - npm install
+install:
+  - npm install
 
 script:
-  - sleep 10s
-  - curl http://127.0.0.1:4873
 #  - npm run test:cover
-#  - npm run spec
+  - npm run spec -- --registry=http://127.0.0.1:4873
+  
+after_failure:
+  - npm logs registry-npm
 
 #after_script:
 #  - npm run test:cover:publish
