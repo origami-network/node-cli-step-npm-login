@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+  - stable
+
+services:
+  - docker
+
+before_install:
+- docker docker pull verdaccio/verdaccio
+- docker run -d -p 127.0.0.1:4873:4873  verdaccio/verdaccio
+- docker ps -a
+
+#install:
+#  - npm install
+
+script:
+  - curl http://127.0.0.0:4873
+#  - npm run test:cover
+#  - npm run spec
+
+#after_script:
+#  - npm run test:cover:publish
