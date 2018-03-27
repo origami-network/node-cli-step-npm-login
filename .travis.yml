@@ -18,7 +18,7 @@ script:
   - npm run spec -- --registry=http://127.0.0.1:4873
   
 after_failure:
-  - npm logs registry-npm
+  - docker logs registry-npm
 
 #after_script:
 #  - npm run test:cover:publish
