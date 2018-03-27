@@ -16,7 +16,7 @@ before_install:
 
 script:
   - sleep 10s
-  - curl http://127.0.0.0:4873
+  - curl http://127.0.0.1:4873
 #  - npm run test:cover
 #  - npm run spec
 
