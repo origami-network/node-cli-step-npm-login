@@ -7,10 +7,9 @@ services:
   - docker
 
 before_install:
-- docker docker pull verdaccio/verdaccio
+- docker pull verdaccio/verdaccio
 - docker run -d -p 127.0.0.1:4873:4873  verdaccio/verdaccio
 - docker ps -a
-
 
 #install:
 #  - npm install
